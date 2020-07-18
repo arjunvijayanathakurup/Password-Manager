@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Password Manager</string>
+    <string name="signup">Create Account</string>
+    <string name="signin">Login</string>
+    <string name="email">Email Address</string>
+    <string name="masterPassword">Master Password</string>
+    <string name="retype">Re-type Master Password</string>
+    <string name="hint">Master Password Hint (Optional)</string>
+    <string name="createAccount">Create Account</string>
+    <string name="mainPagewriting">Login or Create a new account to access your secure vault.</string>
 </resources>
