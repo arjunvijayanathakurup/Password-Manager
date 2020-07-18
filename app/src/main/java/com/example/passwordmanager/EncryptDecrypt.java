@@ -21,7 +21,7 @@ public class EncryptDecrypt {
 
     public static void setKey(String myKey)
     {
-        MessageDigest sha = null;
+        MessageDigest sha=null;
         try
         {
             key = myKey.getBytes("UTF-8");
@@ -52,8 +52,8 @@ public class EncryptDecrypt {
         try
         {
             setKey(secret);   //This will be our key.
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            //We will be using AES using ECB and PKCS5 for padding.
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            //We will be using AES using CBC and PKCS5 for padding.
             cipher.init(Cipher.ENCRYPT_MODE,secretKey);
             //Encryption.
             return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
@@ -73,7 +73,7 @@ public class EncryptDecrypt {
         try  //Repeating the same process in the encryption.
         {
             setKey(secret);
-            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE,secretKey);
             //Changing the mode to Decrypt for decryption.
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
