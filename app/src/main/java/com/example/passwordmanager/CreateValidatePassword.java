@@ -6,6 +6,9 @@ import java.util.List;
 
 public class CreateValidatePassword {
 
+    //We will be calling only two methords from this class.
+    // createpassword() for password creation and Validator(usergivenpassword) parameter is string.
+
     public String createpassword() {
 //Methord to create password.
 

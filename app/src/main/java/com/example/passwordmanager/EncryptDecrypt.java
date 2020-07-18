@@ -15,12 +15,17 @@ public class EncryptDecrypt {
     //Class to Encrypt and Decrypt the user passwords.
     //We will be using AES
 
+    //The two main functions that we will be calling in MainActivity
+    //decrypt(decryptvalue,key)  both parameters are string.
+    //encrypt(encryptvalue,key) both parameters are string.
+
     private static SecretKeySpec secretKey;
     //We need a secret key to encrypt and decrypt
     private static byte[] key;
 
     public static void setKey(String myKey)
     {
+        //This methord is for the key generation. We won't be calling this methord outside this class.
         MessageDigest sha=null;
         try
         {
@@ -58,7 +63,6 @@ public class EncryptDecrypt {
             //Encryption.
             return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
             //return the encrypted passsword in a string format.
-
         }
         catch (Exception e) //Exception.
         {
@@ -85,9 +89,4 @@ public class EncryptDecrypt {
             return "Error while decrypting: " +e.toString();
         }
     }
-
-
-
-
-
 }
