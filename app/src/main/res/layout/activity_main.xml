@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/signUpMain"
         android:layout_width="326dp"
         android:layout_height="40dp"
         android:layout_marginStart="42dp"
@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/loginMainButton" />
 
     <TextView
         android:id="@+id/textView6"
@@ -51,7 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/loginMainButton"
         android:layout_width="326dp"
         android:layout_height="40dp"
         android:layout_marginStart="42dp"
