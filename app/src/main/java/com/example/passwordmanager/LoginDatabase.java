@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginDatabase {
     static final String DATABASE_NAME = "login.db";
@@ -38,7 +39,7 @@ public class LoginDatabase {
         newValues.put("PASSWORD",password);
         // Insert the row into your table
         db.insert("LOGIN", null, newValues);
-        //Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
     }
     public int deleteEntry(String UserName)
     {

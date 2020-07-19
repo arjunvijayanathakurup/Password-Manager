@@ -58,7 +58,7 @@ public class SignUp extends AppCompatActivity {
 
     }
     protected void onDestroy() {
-// Auto-generated method stub
+        // Auto-generated method stub
         super.onDestroy();
         loginDatabase.close();
     }
