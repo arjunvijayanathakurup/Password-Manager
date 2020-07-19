@@ -13,9 +13,12 @@ import android.widget.Toast;
 public class SignUp extends AppCompatActivity {
     EditText signUpEmail, signUpPassword, signUpConfirm, masterPasswordHint;
     Button createAccount;
+    LoginDatabase loginDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loginDatabase = new LoginDatabase(this);
+        loginDatabase = loginDatabase.open();
         setContentView(R.layout.activity_sign_up);
         signUpEmail = (EditText)findViewById(R.id.signupEmail);
         signUpPassword = (EditText)findViewById(R.id.signupPassword);
@@ -41,6 +44,7 @@ public class SignUp extends AppCompatActivity {
                 if(signUpEmail.getText().toString() != null && signUpPassword.getText().toString() != null && signUpPassword.getText().toString().equals(signUpConfirm.getText().toString())){
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                    loginDatabase.insertEntry(String.valueOf(signUpEmail),String.valueOf(signUpPassword));
                     Toast.makeText(getApplicationContext(), "Signed Up, Please Login with the credentials", Toast.LENGTH_LONG).show();
                 }
                 else{
@@ -51,5 +55,12 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+
     }
+    protected void onDestroy() {
+// Auto-generated method stub
+        super.onDestroy();
+        loginDatabase.close();
+    }
+
 }
