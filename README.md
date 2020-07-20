@@ -17,7 +17,7 @@
 
 👤 **Varun , Arjun**
 
-* Twitter: [\_VarunNair\_ , arjunv\_kurup](https://twitter.com/_VarunNair_ , https://twitter.com/arjunv_kurup)
+* Twitter: [_VarunNair_ , arjunv\_kurup](https://twitter.com/_VarunNair_ , https://twitter.com/arjunv_kurup)
 * Github: [@masterugwee , arjunvijayanathakurup](https://github.com/masterugwee , https://github.com/arjunvijayanathakurup)
 * LinkedIn: [@Varun Nair](https://www.linkedin.com/in/varun-nair-a573b3154/ , https://www.linkedin.com/in/arjunvijayanathakurup/)
 
