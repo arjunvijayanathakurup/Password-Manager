@@ -20,7 +20,7 @@
 
 * Twitter: [_VarunNair_ , arjunv\_kurup](https://twitter.com/7h3M0nk , https://twitter.com/arjunv_kurup)
 * Github: [@masterugwee , arjunvijayanathakurup](https://github.com/masterugwee , https://github.com/arjunvijayanathakurup)
-* LinkedIn: [@Varun Nair](https://www.linkedin.com/in/varun-nair-a573b3154/ , https://www.linkedin.com/in/arjunvijayanathakurup/)
+* LinkedIn: [@Varun Nair , @arjunvijayanathakurup](https://www.linkedin.com/in/varun-nair-a573b3154/ , https://www.linkedin.com/in/arjunvijayanathakurup/)
 
 ## Show your support
 
