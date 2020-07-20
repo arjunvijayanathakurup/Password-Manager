@@ -2,6 +2,7 @@ package com.example.passwordmanager;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -19,6 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String CONTACTS_COLUMN_ID = "id";
     public static final String CONTACTS_COLUMN_EMAIL = "email";
     public static final String CONTACTS_COLUMN_PASSWORD = "password";
+    public static final String CONTACTS_COLUMN_URL = "url";
     public static final String CONTACTS_COLUMN_USER = "userauth";
     private HashMap hp;
 
@@ -29,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
         db.execSQL(
-                "create table usersdata " + "(id integer primary key, name text, email text, password text, userauth text)");
+                "create table usersdata " + "(id integer primary key, name text, email text, password text, userauth text, url text)");
     }
 
     @Override
@@ -38,13 +40,14 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertPassword (String name, String email, String password, String userauth) {
+    public boolean insertPassword (String name, String email, String password, String userauth, String url) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
         contentValues.put("email", email);
         contentValues.put("password", password);
         contentValues.put("userauth", userauth);
+        contentValues.put("url", url);
         db.insert("usersdata", null, contentValues);
         return true;
     }
@@ -55,13 +58,14 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean updateData (Integer id, String name, String email, String password, String userauth) {
+    public boolean updateData (Integer id, String name, String email, String password, String userauth, String url) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
         contentValues.put("email", email);
         contentValues.put("password", password);
         contentValues.put("userauth", userauth);
+        contentValues.put("url", url);
         db.update("usersdata", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
         return true;
     }
@@ -79,12 +83,18 @@ public class DBHelper extends SQLiteOpenHelper {
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res =  db.rawQuery( "select * from usersdata", null );
-        res.moveToFirst();
+        if(res!=null && res.getCount()>0){
+            res.moveToFirst();
 
-        while(res.isAfterLast() == false){
-            array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
-            res.moveToNext();
+            while(res.isAfterLast() == false){
+                array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_NAME)));
+                res.moveToNext();
+            }
+            return array_list;
         }
-        return array_list;
+        else{
+            return null;
+        }
+
     }
 }
