@@ -10,7 +10,7 @@
   </a>
 </p>
 
-> Passwords provide the first line of defense against unauthorized access to your personal information. The stronger your password, the more protected your accounts will be from hackers and malicious software. Password managers don't just store your passwords — they help you generate and save strong, unique passwords when you sign up to new websites.We created an application that creates unique passwords of length 16bits and stores them using AES encryption.
+Passwords provide the first line of defense against unauthorized access to your personal information. The stronger your password, the more protected your accounts will be from hackers and malicious software. Password managers don't just store your passwords — they help you generate and save strong, unique passwords when you sign up to new websites.We created an application that creates unique passwords of length 16bits and stores them using AES encryption.
 
 ### 🏠 [Homepage](https://github.com/arjunvijayanathakurup/Password-Manager)
 
