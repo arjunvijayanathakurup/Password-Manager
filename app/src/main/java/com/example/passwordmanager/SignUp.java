@@ -13,12 +13,11 @@ import android.widget.Toast;
 public class SignUp extends AppCompatActivity {
     EditText signUpEmail, signUpPassword, signUpConfirm, masterPasswordHint;
     Button createAccount;
-    LoginDatabase loginDatabase;
+    LoginHelper loginDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loginDatabase = new LoginDatabase(this);
-        loginDatabase = loginDatabase.open();
+        loginDatabase = new LoginHelper(this);
         setContentView(R.layout.activity_sign_up);
         signUpEmail = (EditText)findViewById(R.id.signupEmail);
         signUpPassword = (EditText)findViewById(R.id.signupPassword);
@@ -33,24 +32,28 @@ public class SignUp extends AppCompatActivity {
                     signUpEmail.setError("Please enter an Email id");
                     return;
                 }
-                if(TextUtils.isEmpty(signUpPassword.getText().toString())) {
+                else if(TextUtils.isEmpty(signUpPassword.getText().toString())) {
                     signUpPassword.setError("Please enter a Password");
                     return;
                 }
-                if(TextUtils.isEmpty(signUpConfirm.getText().toString())) {
+                else if(TextUtils.isEmpty(signUpConfirm.getText().toString())) {
                     signUpConfirm.setError("Please confirm the entered Password");
                     return;
                 }
-                if(signUpEmail.getText().toString() != null && signUpPassword.getText().toString() != null && signUpPassword.getText().toString().equals(signUpConfirm.getText().toString())){
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    loginDatabase.insertEntry(String.valueOf(signUpEmail),String.valueOf(signUpPassword));
-                    Toast.makeText(getApplicationContext(), "Signed Up, Please Login with the credentials", Toast.LENGTH_LONG).show();
+                else if(signUpPassword.getText().toString().equals(signUpConfirm.getText().toString())){
+                    String[] emailSplit = signUpEmail.getText().toString().split("@", 2);
+                    String username = emailSplit[0];
+                    if(loginDatabase.insertPassword(username, signUpEmail.getText().toString(), signUpPassword.getText().toString(), masterPasswordHint.getText().toString())){
+                        Toast.makeText(SignUp.this, "Congrats: User created Successfully, Please Login", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
+                        Toast.makeText(SignUp.this, "Error in creating a user", Toast.LENGTH_LONG).show();
+                    }
                 }
                 else{
-                    if(!signUpPassword.getText().toString().equals(signUpConfirm.getText().toString())) {
                         Toast.makeText(getApplicationContext(), "Passwords do not match.", Toast.LENGTH_LONG).show();
-                    }
                 }
             }
         });
