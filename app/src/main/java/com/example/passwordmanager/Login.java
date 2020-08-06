@@ -51,10 +51,12 @@ public class Login extends AppCompatActivity {
 
                     int passwordDBValues = passwordHelper.getAllData();
                     if(passwordDBValues == 1){
-                        Intent intent = new Intent(Login.this, ListLayout.class);
+                        Intent intent = new Intent(Login.this, MainLayout.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }else{
                         Intent intent = new Intent(Login.this, AddPassword.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 }

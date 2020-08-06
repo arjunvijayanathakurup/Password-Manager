@@ -23,13 +23,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SignUp.class);
-                startActivity(intent);
-            }
-        });
+    public void addPassword(View view) {
+        Intent intent = new Intent(MainActivity.this, SignUp.class);
+        startActivity(intent);
+    }
+
+    public void viewData(View view) {
+        Intent intent = new Intent(MainActivity.this, ViewData.class);
+        startActivity(intent);
     }
 }

@@ -25,16 +25,8 @@ public class PasswordAdapter extends ArrayAdapter<Passwords> {
         v = inflater.inflate(R.layout.activity_list_layout, null);
         TextView name = (TextView)v.findViewById(R.id.name);
         TextView username = (TextView)v.findViewById(R.id.username);
-        ImageView threeDots = (ImageView)v.findViewById(R.id.viewPopUp);
         name.setText(passwordsList.get(position).getName());
         username.setText(passwordsList.get(position).getUsername());
-        threeDots.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // TODO: Add intent to the view page here.
-                // TODO: The next page should contain the edit, delete, copy to clipboard options etc.
-            }
-        });
         return v;
     }
 }

@@ -37,7 +37,7 @@ public class AddPassword extends AppCompatActivity {
                 password.setText(passwordData);
                 String urlData = url.getText().toString();
                 if(passwordHelper.insertPassword(nameData, emailData, usernameData, passwordData, urlData)){
-                    Intent intent = new Intent(getApplicationContext(), ListLayout.class);
+                    Intent intent = new Intent(getApplicationContext(), MainLayout.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(AddPassword.this, "Error while inserting password", Toast.LENGTH_LONG).show();
