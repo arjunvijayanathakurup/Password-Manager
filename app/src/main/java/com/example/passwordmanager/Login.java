@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ public class Login extends AppCompatActivity {
     private EditText signedUpEmail, signedUpPassword;
     Button signupButton;
     LoginHelper loginDatabase;
+    PasswordHelper passwordHelper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class Login extends AppCompatActivity {
         signedUpPassword = (EditText)findViewById(R.id.signupPassword);
         signupButton = (Button)findViewById(R.id.signupButton);
         loginDatabase = new LoginHelper(this);
+        passwordHelper = new PasswordHelper(this);
 
         signupButton.setOnClickListener(view -> {
             if(TextUtils.isEmpty(signedUpEmail.getText().toString())) {
@@ -45,8 +48,15 @@ public class Login extends AppCompatActivity {
                 {
                     Toast.makeText(Login.this, "Congrats: Login Successful", Toast.LENGTH_LONG).show();
                     //Dialoge dismiss
-                    Intent intent = new Intent(getApplicationContext(), MainLayout.class);
-                    startActivity(intent);
+
+                    int passwordDBValues = passwordHelper.getAllData();
+                    if(passwordDBValues == 1){
+                        Intent intent = new Intent(Login.this, ListLayout.class);
+                        startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(Login.this, AddPassword.class);
+                        startActivity(intent);
+                    }
                 }
                 else
                 {
@@ -60,6 +70,7 @@ public class Login extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         // Close The Database
+        passwordHelper.close();
         loginDatabase.close();
     }
 }
