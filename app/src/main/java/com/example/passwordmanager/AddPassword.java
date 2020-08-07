@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddPassword extends AppCompatActivity {
-    EditText name, email, password, username, url;
+    EditText name, email,  username, url;
+    TextView password;
     Button add;
     PasswordHelper passwordHelper;
     CreateValidatePassword createValidatePassword;
@@ -21,11 +23,13 @@ public class AddPassword extends AppCompatActivity {
         name = (EditText)findViewById(R.id.nameInsert);
         email = (EditText)findViewById(R.id.emailInsert);
         username = (EditText)findViewById(R.id.usernameInsert);
-        password = (EditText)findViewById(R.id.passwordInsert);
+        password = (TextView) findViewById(R.id.passwordInsert);
         url = (EditText)findViewById(R.id.urlInsert);
         add = (Button)findViewById(R.id.addData);
         passwordHelper = new PasswordHelper(this);
         createValidatePassword = new CreateValidatePassword();
+        String passwordData = createValidatePassword.createpassword();
+        password.setText(passwordData);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,8 +37,6 @@ public class AddPassword extends AppCompatActivity {
                 String nameData = name.getText().toString();
                 String emailData  = email.getText().toString();
                 String usernameData = username.getText().toString();
-                String passwordData = createValidatePassword.createpassword();
-                password.setText(passwordData);
                 String urlData = url.getText().toString();
                 if(passwordHelper.insertPassword(nameData, emailData, usernameData, passwordData, urlData)){
                     Intent intent = new Intent(getApplicationContext(), MainLayout.class);

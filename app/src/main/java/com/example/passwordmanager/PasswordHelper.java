@@ -24,7 +24,7 @@ public class PasswordHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db){
         db.execSQL(
-                "create table passwords (id integer primary key, name text, username text, email text, password text, url text)");
+                "create table passwords (id integer primary key autoincrement, name text, username text, email text, password text, url text)");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -42,6 +42,12 @@ public class PasswordHelper extends SQLiteOpenHelper {
         contentValues.put("url", url);
         db.insert("passwords", null, contentValues);
         return true;
+    }
+
+    public Cursor getCurrent(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from passwords where id = '" + id +"'", null );
+        return res;
     }
 
     public Cursor getData(String name) {
@@ -62,7 +68,7 @@ public class PasswordHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public boolean updateData (String name, String email, String username, String password, String url) {
+    public boolean updateData (int id, String name, String email, String username, String password, String url) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
@@ -70,15 +76,15 @@ public class PasswordHelper extends SQLiteOpenHelper {
         contentValues.put("username", username);
         contentValues.put("password", password);
         contentValues.put("url", url);
-        db.update("passwords", contentValues, "name = ? ", new String[] { name } );
+        db.update("passwords", contentValues, "id =" + id , null);
         return true;
     }
 
-    public Integer deleteData (String name) {
+    public Integer deleteData (int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete("passwords",
-                "name = ? ",
-                new String[] { name });
+                "id = " +id,
+                null);
     }
 
     public ArrayList<Passwords> getAllDataFrom(){
@@ -88,11 +94,11 @@ public class PasswordHelper extends SQLiteOpenHelper {
         if(res.moveToFirst()){
             do{
                 Passwords passwords = new Passwords();
-                passwords.setName(res.getString(0));
-                passwords.setUsername(res.getString(1));
-                passwords.setMailId(res.getString(2));
-                passwords.setPassword(res.getString(3));
-                passwords.setUrl(res.getString(4));
+                passwords.setName(res.getString(1));
+                passwords.setUsername(res.getString(2));
+                passwords.setMailId(res.getString(3));
+                passwords.setPassword(res.getString(4));
+                passwords.setUrl(res.getString(5));
                 list.add(passwords);
             }
             while (res.moveToNext());

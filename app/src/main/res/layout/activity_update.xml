@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewData">
+    tools:context=".UpdateActivity">
 
     <Button
         android:id="@+id/button2"
@@ -262,7 +262,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameValue" />
 
     <Button
-        android:id="@+id/update"
+        android:id="@+id/button"
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_marginStart="41dp"
@@ -279,4 +279,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider5"
         app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

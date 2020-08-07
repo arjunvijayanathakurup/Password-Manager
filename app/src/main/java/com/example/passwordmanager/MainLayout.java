@@ -1,10 +1,12 @@
 package com.example.passwordmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,6 +21,7 @@ public class MainLayout extends AppCompatActivity {
     ArrayAdapter<String> listAdapter;
     PasswordHelper passwordAdapter = new PasswordHelper(this);
     ImageView addButton;
+    int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +34,25 @@ public class MainLayout extends AppCompatActivity {
 
         for (Passwords passwords : this.passwordsArrayList) {
             String name = passwords.getName();
-            String username = passwords.getUsername();
+            id = passwords.getId();
             passwordListString.add(name);
-            passwordListString.add(username);
         }
-        listAdapter = new ArrayAdapter<String>(this, R.layout.activity_list_layout, R.id.username, passwordListString);
+        listAdapter = new ArrayAdapter<String>(this, R.layout.activity_list_layout, R.id.name, passwordListString);
         listView.setAdapter(listAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), ViewData.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), AddPassword.class);
+
                 startActivity(intent);
             }
         });

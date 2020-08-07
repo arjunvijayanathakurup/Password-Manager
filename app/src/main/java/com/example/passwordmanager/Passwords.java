@@ -1,12 +1,20 @@
 package com.example.passwordmanager;
 
 public class Passwords {
+    private int id;
     private String mailId;
     private String password;
     private String name;
     private String url;
     private String username;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getMailId() {
         return mailId;
